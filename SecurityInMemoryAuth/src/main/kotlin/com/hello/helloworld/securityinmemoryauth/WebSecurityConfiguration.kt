@@ -42,7 +42,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter (){
             .antMatchers ("/user").hasRole ("USER")
             .antMatchers ("/all").hasAnyRole ("ADMIN", "USER")
             .antMatchers ("static/css", "static/js").permitAll()
-            .and().formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll()
+            .and().formLogin().permitAll()
             .and().logout().permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")
     }
