@@ -4,6 +4,7 @@
 ### Projects
 
 * [Spring Boot Security - Authentication and Authorization in memory](SecurityInMemoryAuth/)
+* [Spring Boot Security - Custom login page](SecurityInMemoryAuthCustomLoginPage/)
 
 ### Reference Documentation
 For further reference, please consider the following sections:
