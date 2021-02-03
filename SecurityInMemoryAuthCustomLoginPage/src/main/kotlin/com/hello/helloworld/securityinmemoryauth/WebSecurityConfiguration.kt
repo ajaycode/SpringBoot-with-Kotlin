@@ -14,7 +14,7 @@ import kotlin.jvm.Throws
 @EnableWebSecurity
 class WebSecurityConfiguration : WebSecurityConfigurerAdapter (){
 
-    private val ENCODED_PASSWORD = "\$2y\$12\$/MGnT4p1h6/IGkXN9bRwjutaqXIX/KpJo7ZQwyBXjto2cFuKPWbnW"  // hash of "user"
+    private val ENCODED_PASSWORD = "\$2y\$12\$/MGnT4p1h6/IGkXN9bRwjutaqXIX/KpJo7ZQwyBXjto2cFuKPWbnW"  // above stands for user
 
     companion object {
         val logger = LogManager.getLogger()

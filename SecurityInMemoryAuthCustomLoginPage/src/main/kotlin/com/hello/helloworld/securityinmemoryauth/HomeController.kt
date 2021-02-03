@@ -4,9 +4,7 @@ import org.apache.logging.log4j.LogManager
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.servlet.ModelAndView
 
 @Controller
 class HomeController {
@@ -32,17 +30,14 @@ class HomeController {
     @ResponseBody
     fun admin (): String {
         logger.info ("In admin method.")
-        return ("<h1>You are on the admin page</h1>")
+        return ("<h1>You are on the admin page</h1><a href=\"login?logout\">Logout</a>")
     }
 
     @RequestMapping ("/all")
-    @ResponseBody
     fun all (): String {
         logger.info ("In all method.")
-        return ("<h1>This page should be accessible to all authenticated users and admins</h1>")
+        return "all"
     }
-
-
 
     @GetMapping ("/403")
     @ResponseBody
@@ -51,5 +46,8 @@ class HomeController {
         return ("<h1>403 Error: Access forbidden.</h1>")
     }
 
-
+    @RequestMapping ("/login")
+    fun login ():String {
+        return "login"
+    }
 }
