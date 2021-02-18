@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Handling Form Submission</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <!-- CSS only -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper.js -->
+    <script crossorigin="anonymous" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body class="container">
+
+<h1>Edit an existing user and save into the database</h1>
+
+<h6 th:text="${HeaderText}"/>
+<div class="row">
+    <div class="col-md-4">
+        <form action="#" method="post" th:action="@{/user/updateuser}" th:object="${user}">
+
+            <input type="hidden" th:field="*{userId}" id="userId"/>
+            <input type="hidden" th:field="*{createTime}" id="createTime"/>
+            <div class="mb-3">
+                <label class="form-label" for="firstName">First Name:</label>
+                <input class="form-control" id="firstName" placeholder="Enter First Name" th:field="*{firstName}"
+                       type="text"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lastName">Last Name: </label>
+                <input class="form-control" id="lastName" placeholder="Enter Last Name" th:field="*{lastName}"
+                       type="text"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="username">Username: </label>
+                <input class="form-control" id="username" placeholder="Enter Username" th:field="*{username}"
+                       type="text"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="email">Email: </label>
+                <input class="form-control" id="email" placeholder="Enter Email address" th:field="*{email}"
+                       type="text"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="password">Password: </label>
+                <input class="form-control" id="password" placeholder="Enter Password" th:field="*{password}"
+                       type="text"/>
+            </div>
+
+            <div class="ui-button">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
