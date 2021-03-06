@@ -5,6 +5,8 @@
 
 * [Spring Boot Security - Authentication and Authorization in memory](SecurityInMemoryAuth/)
 * [Spring Boot Security - Custom login page](SecurityInMemoryAuthCustomLoginPage/)
+* [Spring Boot JPA Basic](JPACrud)
+* [Spring Boot JPA - Entity Mappings/Joins & Auto time-stamps](JPATableJoins)
 
 ### Reference Documentation
 For further reference, please consider the following sections:
