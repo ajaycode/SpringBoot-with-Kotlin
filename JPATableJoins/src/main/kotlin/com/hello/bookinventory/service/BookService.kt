@@ -91,14 +91,47 @@ class BookService {
         else {
             return ("Title was not updated")
         }
+    }
 
 
+    fun findAllAuthors () : List<Author> {
+        val authors = authorRepository.findAll()
+        for (author in authors){
+            logger.info (author.name)
+        }
+        return authors
 
     }
 
-    fun findAllAuthors () : List <Author> {
-        return authorRepository.findAll()
-    }
+    /*fun deleteAuthor () : KotlinTriple<Boolean, Long, String> {
+        val authorCount = authorRepository.count()
+        val authorToDelete : Long = Random.nextLong(1, authorCount)
+        logger.info ("Will attempt to delete author # $authorToDelete")
+        if (authorRepository.existsById(authorToDelete))
+        {
+            val author  = authorRepository.findById(authorToDelete)
+            var name : String = ""
+            if (author.isPresent())
+                name = author.get().name
+            logger.info ("Title of author to be deleted : ${name}")
+            var status : Boolean = true
+            val bookList = authorRepository.getBookListById(authorToDelete)
+            if (bookList.isNotEmpty())
+                logger.info ("Author has written ${bookList.size} books.")
+            try {
+                authorRepository.deleteById(authorToDelete)
+            }
+            catch (e: Exception)
+            {
+                logger.error("Unable to delete author # $authorToDelete, named ${name} .")
+                logger.error ("Exception thrown. ${e.message}")
+                status = false
+            }
+            if (status == true)
+                return KotlinTriple(true, second = authorToDelete, third = name)
+        }
+        return KotlinTriple(false, second = 0L, third = "null")
+    }*/
 
     fun findBooksByAuthor () : List <Book> {
         TODO ()

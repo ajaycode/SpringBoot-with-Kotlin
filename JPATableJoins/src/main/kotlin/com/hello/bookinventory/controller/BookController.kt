@@ -46,6 +46,7 @@ class BookController {
 
     //curl http://localhost:8080/deleteBook
     // Deletes a random book from the book table
+    // Will not delete the author from the author table as orphanRemoval = false
     @RequestMapping ("/deleteBook")
     fun deleteBook () : String {
         val returnTriple  =  bookService.deleteBook ()
@@ -64,4 +65,37 @@ class BookController {
     fun updateBook (): String {
         return bookService.updateBook()
     }
+
+    //curl http://localhost:8080/listAuthors
+    @RequestMapping ("/listAuthors")
+    fun listAuthors (): String {
+        val authorList : List<Author> = bookService.findAllAuthors()
+        var outputString : String = ""
+        for (author in authorList)
+        {
+            val bookList : List<Book> = author.bookList
+
+            if (bookList.isNotEmpty()) {
+                logger.info (bookList.toString())
+                outputString += "[${author.name} wrote ${bookList.toString()}]\n "
+            }
+        }
+        return outputString
+    }
+
+    //curl http://localhost:8080/deleteAuthor
+    // Deletes a random author from the author table
+    // Will not delete the author's book from the book table as orphanRemoval = false
+   /* @RequestMapping ("/deleteAuthor")
+    fun deleteAuthor () : String {
+        val returnTriple  =  bookService.deleteAuthor ()
+        if (returnTriple.first == true)
+        {
+            return "Author # ${returnTriple.second} named ${returnTriple.third} was deleted"
+        }
+        else {
+            return "Author could not be deleted."
+        }
+    }*/
+
 }

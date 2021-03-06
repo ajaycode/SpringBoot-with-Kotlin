@@ -10,7 +10,7 @@ data class Author (
 
     var name : String = "",
 
-    @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "author", orphanRemoval = false)
+    @OneToMany(mappedBy = "author", orphanRemoval = false)
     var bookList : List<Book> = mutableListOf()
 ){
     override fun toString(): String {
