@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import kotlin.Triple as KotlinTriple
 
 @RestController
 class BookController {
@@ -43,14 +44,24 @@ class BookController {
         return outputString
     }
 
+    //curl http://localhost:8080/deleteBook
+    // Deletes a random book from the book table
     @RequestMapping ("/deleteBook")
     fun deleteBook () : String {
-        if (bookService.deleteBook ())
+        val returnTriple  =  bookService.deleteBook ()
+        if (returnTriple.first == true)
         {
-            return "Book Deleted"
+            return "Book ${returnTriple.second} with title ${returnTriple.third} Deleted"
         }
         else {
             return "Book could not be deleted"
         }
+    }
+
+    //curl http://localhost:8080/updateBook
+    // Updates the title of the book from X to X[Updated].  The timestamp should also be updated.
+    @RequestMapping("/updateBook")
+    fun updateBook (): String {
+        return bookService.updateBook()
     }
 }

@@ -7,7 +7,9 @@ import com.hello.bookinventory.model.Book
 import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 import kotlin.random.Random
+import kotlin.Triple as KotlinTriple
 
 @Service
 class BookService {
@@ -43,15 +45,55 @@ class BookService {
 
     }
 
-    fun deleteBook () : Boolean {
+    fun deleteBook () : KotlinTriple<Boolean, Long, String> {
         val bookCount = bookRepository.count()
-        val bookToDelete : Long = Random.nextLong(0, bookCount -1)
+        val bookToDelete : Long = Random.nextLong(1, bookCount)
         logger.info ("Will attempt to delete book # $bookToDelete")
         if (bookRepository.existsById(bookToDelete))
         {
-            bookRepository.deleteById(bookToDelete)
+            val book  = bookRepository.findById(bookToDelete)
+            var title : String = ""
+            if (book.isPresent())
+               title = book.get().title
+            logger.info ("Title of book to be deleted : ${title}")
+            var status : Boolean = true
+            try {
+                bookRepository.deleteById(bookToDelete)
+            }
+            catch (e: Exception)
+            {
+                logger.error("Unable to delete book # $bookToDelete, with title ${title} .")
+                logger.error ("Exception thrown. ${e.message}")
+                status = false
+            }
+            if (status == true)
+                return KotlinTriple(true, second = bookToDelete, third = title)
         }
-        return  !(bookRepository.existsById(bookToDelete))
+        return KotlinTriple(false, second = 0L, third = "null")
+    }
+
+
+    fun updateBook () : String {
+        val bookCount = bookRepository.count()
+        // var bookExists : Boolean = true
+        var i : Long = 1
+        while (!bookRepository.existsById(i) && i <= bookCount ){
+            i++
+            logger.info ("No book found with id # $i .")
+
+        }
+        if (i <= bookCount && bookRepository.existsById(i)){
+            var book : Book = bookRepository.getOne(i)
+            book.title = book.title + "[Updated]"
+            var savedBook : Book = bookRepository.save(book)
+            return ("Title was updated to ${savedBook.title}")
+        }
+        else {
+            return ("Title was not updated")
+        }
+
+
+
     }
 
     fun findAllAuthors () : List <Author> {
