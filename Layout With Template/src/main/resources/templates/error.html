@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- Source: Spring Boot 2 Recipes - A problem solving approach -->
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<h1>Oops!   Something isn't right!   We will work on it!</h1>
+<div>
+    <div>
+        <span>Status: </span>
+        <span th:text="${status}"></span>
+    </div>
+    <div>
+        <span>Error: </span>
+        <span th:text="${error}"></span>
+    </div>
+    <div>
+        <span>Summary: </span>
+        <span th:text="${message}"></span>
+    </div>
+    <div th:if="${exception != null}">
+        <span>Exception: </span>
+        <span th:text="${exception}"></span>
+    </div>
+    <div th:if="${trace != null}">
+        <h2>Stack Trace:</h2>
+        <span th:text="${trace}"></span>
+    </div>
+</div>
+</body>
+</html>
