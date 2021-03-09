@@ -1,6 +1,7 @@
 # Use of a default layout across all pages
 
-A default template is used and each of the Controller methods plug their views into the template using the layout:decorator="~{layout/layout}" in each of the pages.
+A default template is used and each of the Controller methods plug their views into the template using the layout:decorator="~{layout/layout}" 
+in each of the pages.
 The content that must be posted into the layout  (eg. subtract.html) is embedded within <div class="container-fluid" layout:fragment="content"> ...</div> elements.
 The view (eg. subtract.html) contains a pointer to the layout file - eg. layout:decorator="~{layout/layout}"
 
